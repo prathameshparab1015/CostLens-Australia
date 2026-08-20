@@ -40,6 +40,21 @@ The project was developed end-to-end in Power BI, covering data preparation, mod
 - Structured the data model to support analysis across city, year, gender and employment dimensions.
 - Established relationships between fact and dimension tables to support consistent filtering across the dashboard.
 
+#### 🔗 Data Model
+
+The Power BI semantic model follows a fact-and-dimension structure, connecting core analytical datasets through shared City and Date dimensions.
+
+- **Dim_City** provides consistent city-level filtering across the model.
+- **Dim_Date** supports time-based analysis and year-level filtering.
+- **Fact_Earnings** contains earnings data by city, employment type and gender.
+- **Fact_RentalMarket** contains rental market data used for rent and affordability analysis.
+- **Fact_HouseholdSpending** supports household expenditure and spending-category analysis.
+- **Fact_CPI** provides CPI measures used to analyse changes in living costs.
+
+The model uses one-to-many relationships between dimension and fact tables to maintain consistent filter propagation across dashboard measures and visuals.
+
+![CostLens Australia Power BI Data Model](costlens-data-model.png)
+
 ### 🧮 DAX & KPI Development
 
 Developed measures and business logic for key affordability indicators including:

@@ -57,17 +57,89 @@ The model uses one-to-many relationships between dimension and fact tables to ma
 
 ### 🧮 DAX & KPI Development
 
-Developed measures and business logic for key affordability indicators including:
+Developed reusable DAX measures to calculate core affordability metrics and drive dynamic KPI cards, comparisons and city rankings across the dashboard.
 
-- 💰 Monthly Income
-- 🏠 Monthly Rent
-- 💵 Available Income
-- 📉 Rent Burden %
-- 🎯 Required Salary
-- 🏆 Affordability Score
-- 📊 City Affordability Ranking
+#### 💰 Monthly Earnings
 
-The affordability logic combines income, rental and household expenditure measures to provide a clearer view of relative cost-of-living pressure across cities.
+```DAX
+Monthly Earnings =
+[Weekly Earnings] * 52 / 12
+```
+
+Converts weekly earnings into a monthly equivalent, enabling direct comparison with monthly rental costs.
+
+#### 🏠 Monthly Rent
+
+```DAX
+Monthly Rent =
+AVERAGE(Fact_RentalMarket[MedianWeeklyRent]) * 52 / 12
+```
+
+Calculates average monthly rent by converting median weekly rental values from the rental market fact table.
+
+#### 💵 Savings After Rent
+
+```DAX
+Savings After Rent =
+[Monthly Earnings] - [Monthly Rent]
+```
+
+Calculates the amount of monthly earnings remaining after rental costs and powers the Available Income KPI.
+
+#### 📉 Rent to Income %
+
+```DAX
+Rent to Income % =
+DIVIDE([Monthly Rent], [Monthly Earnings])
+```
+
+Calculates the proportion of monthly earnings required to cover rent. This measure forms the core affordability ratio used throughout the dashboard.
+
+#### 🏆 Affordability Score
+
+```DAX
+Affordability Score =
+VAR RentBurden = [Rent to Income %]
+RETURN
+    IF(
+        ISBLANK(RentBurden),
+        BLANK(),
+        MAX(
+            0,
+            MIN(
+                100,
+                100 - (RentBurden * 100)
+            )
+        )
+    )
+```
+
+Transforms rent burden into an intuitive 0–100 affordability score, where a lower rental burden produces a higher affordability score. The measure handles blank values and constrains the result between 0 and 100.
+
+#### 📊 City Rank
+
+```DAX
+City Rank =
+RANKX(
+    ALL(Dim_City[City]),
+    [Rent to Income %],
+    ,
+    ASC,
+    DENSE
+)
+```
+
+Dynamically ranks cities by rent burden, assigning Rank 1 to the city with the lowest Rent to Income percentage. Dense ranking ensures consecutive ranking positions without gaps.
+
+---
+
+### 🔍 How the Measures Work Together
+
+The DAX measures form a connected affordability calculation layer:
+
+**Weekly Earnings → Monthly Earnings → Monthly Rent → Savings After Rent → Rent to Income % → Affordability Score → City Rank**
+
+This measure-driven approach allows the dashboard KPIs, affordability rankings and comparative visuals to recalculate dynamically as users interact with City, Year, Gender and Employment filters.
 
 ### 📈 Dashboard Development
 

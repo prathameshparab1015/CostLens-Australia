@@ -16,18 +16,35 @@ The project transforms multiple economic and cost-of-living datasets into an int
 
 ## 🎯 Business Problem
 
-Cost-of-living information is often distributed across multiple datasets, making it difficult to understand how income, rent and household expenditure interact.
+For international students, recent graduates and young professionals deciding where to live and build their careers in Australia, comparing cities based on salary or rent alone can be misleading. A city may offer higher average earnings, but those benefits can quickly be offset by higher rental costs and everyday household expenses.
 
-CostLens Australia was developed to bring these measures together into a single analytical dashboard and answer practical questions such as:
+For someone considering a move to Sydney, Melbourne, Brisbane, Adelaide or Perth, the more useful question is not simply **"Which city pays more?"** or **"Which city has cheaper rent?"**. It is **"Where will my income go further?"**
 
-- Which Australian capital city is the most affordable?
-- How does average income compare with rental costs?
-- What proportion of income is consumed by rent?
-- How much income remains after major living costs?
-- How has household spending changed over time?
-- Where does household spending go?
+Answering that question is difficult because earnings, rental costs and household expenditure are reported separately across different datasets. This makes it challenging to understand the relationship between income and living costs, estimate how much income remains after rent, and compare the overall affordability of different cities.
 
----
+**CostLens Australia** was developed to solve this problem by bringing these measures together into a single interactive Power BI decision-support dashboard. It enables users to compare earning potential against rental and household costs and develop a clearer picture of financial affordability across five major Australian capital cities.
+
+### 👥 Target Users
+
+The dashboard is designed primarily for:
+
+- **International students** evaluating where to study, live and potentially begin their careers in Australia.
+- **Recent graduates** comparing cities based on both employment income and the cost of establishing themselves independently.
+- **Young professionals** considering relocation and wanting to understand whether higher earnings in another city translate into better financial affordability.
+- **Individuals planning an interstate move** who want a simple, data-driven comparison of income and major living costs.
+
+### 💡 Decisions the Dashboard Supports
+
+CostLens helps users investigate practical questions such as:
+
+- Which capital city has the lowest rental burden relative to average income?
+- Do higher average earnings actually translate into more income remaining after rent?
+- How much of monthly income is consumed by rental costs across different cities?
+- Which city provides the strongest overall affordability position?
+- How have household spending levels changed over time?
+- Which household spending categories account for the largest share of expenditure?
+
+By combining earnings, rental market and household spending data into comparable affordability indicators, CostLens transforms fragmented cost-of-living information into an accessible decision-support tool for people evaluating **where their income is likely to go further in Australia**.
 
 ## ⚙️ Power BI Development
 
